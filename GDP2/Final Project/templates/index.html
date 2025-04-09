@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            width: 640px;
+            height: 480px;
+        }
+
+        form {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        form label {
+            margin-bottom: 5px;
+        }
+
+        form input[type="range"] {
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Real-Time Exercise Detection and Correction System</h1>
+    <div class="content">
+        <img src="{{ url_for('video_feed') }}" alt="Video Feed">
+        <form>
+            <label for="threshold1">Minimum Keypoint Detection Confidence:</label>
+            <input type="range" id="threshold1" name="threshold1" min="0" max="1" step="0.01" value="{{ threshold1 }}">
+            <span id="threshold1_value">{{ threshold1 }}</span><br>
+            
+            <label for="threshold2">Minimum Tracking Confidence:</label>
+            <input type="range" id="threshold2" name="threshold2" min="0" max="1" step="0.01" value="{{ threshold2 }}">
+            <span id="threshold2_value">{{ threshold2 }}</span><br>
+            
+            <label for="threshold3">Minimum Activity Classification Confidence:</label>
+            <input type="range" id="threshold3" name="threshold3" min="0" max="1" step="0.01" value="{{ threshold3 }}">
+            <span id="threshold3_value">{{ threshold3 }}</span><br>
+        </form>
+    </div>
+    
+    <script>
+        // Update the value shown next to the slider
+        document.getElementById("threshold1").oninput = function() {
+            document.getElementById("threshold1_value").innerText = this.value;
+        };
+        document.getElementById("threshold2").oninput = function() {
+            document.getElementById("threshold2_value").innerText = this.value;
+        };
+        document.getElementById("threshold3").oninput = function() {
+            document.getElementById("threshold3_value").innerText = this.value;
+        };
+    </script>
+</body>
+</html>
