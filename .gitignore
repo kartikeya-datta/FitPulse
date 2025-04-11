@@ -9,3 +9,4 @@ logs
 env
 *.avi
 *.mp4
+.myenv/
